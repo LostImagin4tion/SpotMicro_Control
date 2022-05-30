@@ -343,7 +343,7 @@ void setForwardState(const int maxAngle[4][3], const int minAngle[4][3], const i
     pulse = degToPulse(abs(minAngle[2][0] - coeffs[2][0]));
     pwm.setPWM(legPins[2][0], 0, pulse);
 
-    delay(300);
+    delay(150);
 
     pulse = degToPulse(abs(minAngle[0][0] - coeffs[0][0]));
     pwm.setPWM(legPins[0][0], 0, pulse);
@@ -357,7 +357,7 @@ void setForwardState(const int maxAngle[4][3], const int minAngle[4][3], const i
     pulse = degToPulse(abs(maxAngle[2][0] - coeffs[2][0]));
     pwm.setPWM(legPins[2][0], 0, pulse);
 
-    delay(300);
+    delay(150);
 
   }
   setStayState(stayState, coeffs, pwm);
@@ -386,7 +386,7 @@ void setBackwardState(const int maxAngle[4][3], const int minAngle[4][3], const 
     pulse = degToPulse(abs(minAngle[2][1] - coeffs[2][1]));
     pwm.setPWM(legPins[2][1], 0, pulse);
 
-    delay(250);
+    delay(200);
 
     pulse = degToPulse(abs(minAngle[0][1] - coeffs[0][1]));
     pwm.setPWM(legPins[0][1], 0, pulse);
@@ -400,7 +400,7 @@ void setBackwardState(const int maxAngle[4][3], const int minAngle[4][3], const 
     pulse = degToPulse(abs(maxAngle[2][1] - coeffs[2][1]));
     pwm.setPWM(legPins[2][1], 0, pulse);
 
-    delay(250);
+    delay(200);
 
   }
   setStayState(stayState, coeffs, pwm);
@@ -414,10 +414,19 @@ void setTurnRightState(const int maxAngle[4][3], const int minAngle[4][3], const
     setStayState(stayState, coeffs, pwm);
   }
 
+  int pulse = degToPulse(abs(maxAngle[0][0] - coeffs[0][0]));
+  pwm.setPWM(legPins[0][0], 0, pulse);
+
+  pulse = degToPulse(abs(maxAngle[1][0] - coeffs[1][0]));
+  pwm.setPWM(legPins[1][0], 0, pulse);
+
   // loop for walking
   for (int i = 0; i < 10; i++) {
 
-    int pulse = degToPulse(abs(maxAngle[2][1] - coeffs[2][1]));
+    int pulse = degToPulse(abs(maxAngle[2][0] - coeffs[2][0]));
+    pwm.setPWM(legPins[2][0], 0, pulse);
+
+    pulse = degToPulse(abs(maxAngle[2][1] - coeffs[2][1]));
     pwm.setPWM(legPins[2][1], 0, pulse);
 
     pulse = degToPulse(abs(minAngle[2][2] - coeffs[2][2]));
@@ -433,6 +442,9 @@ void setTurnRightState(const int maxAngle[4][3], const int minAngle[4][3], const
     pwm.setPWM(legPins[3][2], 0, pulse);
     
     delay(150);
+
+    pulse = degToPulse(abs(minAngle[2][0] - coeffs[2][0]));
+    pwm.setPWM(legPins[2][0], 0, pulse);
 
     pulse = degToPulse(abs(minAngle[2][1] - coeffs[2][1]));
     pwm.setPWM(legPins[2][1], 0, pulse);
@@ -465,11 +477,14 @@ void setTurnLeftState(const int maxAngle[4][3], const int minAngle[4][3], const 
   // loop for walking
   for (int i = 0; i < 10; i++) {
 
-    int pulse = degToPulse(abs(minAngle[0][0] - coeffs[0][0]));
+    int pulse = degToPulse(abs(maxAngle[0][0] - coeffs[0][0]));
     pwm.setPWM(legPins[0][0], 0, pulse);
 
-    pulse = degToPulse(abs(minAngle[0][1] - coeffs[0][1]));
+    pulse = degToPulse(abs(maxAngle[0][1] - coeffs[0][1]));
     pwm.setPWM(legPins[0][1], 0, pulse);
+
+    pulse = degToPulse(abs(minAngle[01][2] - coeffs[0][2]));
+    pwm.setPWM(legPins[0][2], 0, pulse);
 
     pulse = degToPulse(abs(maxAngle[1][0] - coeffs[1][0]));
     pwm.setPWM(legPins[1][0], 0, pulse);
@@ -477,16 +492,19 @@ void setTurnLeftState(const int maxAngle[4][3], const int minAngle[4][3], const 
     pulse = degToPulse(abs(maxAngle[1][1] - coeffs[1][1]));
     pwm.setPWM(legPins[1][1], 0, pulse);
 
-    pulse = degToPulse(abs(minAngle[0][2] - coeffs[0][2]));
-    pwm.setPWM(legPins[0][2], 0, pulse);
+    pulse = degToPulse(abs(maxAngle[1][2] - coeffs[1][2]));
+    pwm.setPWM(legPins[1][2], 0, pulse);
     
     delay(150);
 
-    pulse = degToPulse(abs(maxAngle[0][0] - coeffs[0][0]));
+    pulse = degToPulse(abs(minAngle[0][0] - coeffs[0][0]));
     pwm.setPWM(legPins[0][0], 0, pulse);
 
-    pulse = degToPulse(abs(maxAngle[0][1] - coeffs[0][1]));
+    pulse = degToPulse(abs(minAngle[0][1] - coeffs[0][1]));
     pwm.setPWM(legPins[0][1], 0, pulse);
+
+    pulse = degToPulse(abs(maxAngle[0][2] - coeffs[0][2]));
+    pwm.setPWM(legPins[0][2], 0, pulse);
 
     pulse = degToPulse(abs(minAngle[1][0] - coeffs[1][0]));
     pwm.setPWM(legPins[1][0], 0, pulse);
@@ -494,8 +512,8 @@ void setTurnLeftState(const int maxAngle[4][3], const int minAngle[4][3], const 
     pulse = degToPulse(abs(minAngle[1][1] - coeffs[1][1]));
     pwm.setPWM(legPins[1][1], 0, pulse);
 
-    pulse = degToPulse(abs(maxAngle[0][2] - coeffs[0][2]));
-    pwm.setPWM(legPins[0][2], 0, pulse);
+    pulse = degToPulse(abs(minAngle[1][2] - coeffs[1][2]));
+    pwm.setPWM(legPins[1][2], 0, pulse);
 
     delay(150);
   }

@@ -75,8 +75,8 @@ const int runBackwardMinAngleState[4][3] = {
 };
 
 const int turnRightMaxAngleState[4][3] = {
-  {20, 5, -10}, 
-  {25, -5, 10},
+  {25, 5, -10}, 
+  {30, -5, 10},
   {30, -5, 7},
   {50, 5, -10}
 };
